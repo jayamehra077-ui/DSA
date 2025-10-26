@@ -11,8 +11,27 @@ class node
      next=NULL;
     }
 };
-class list
+class solution
 {
+ public:
+  node* reverselist(node* head)
+  {
+    node* prev=NULL;
+    node* curr=head;
+    node* next=NULL;
+    while(curr!=NULL)
+    {
+        next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+    }
+    return prev;
+  }
+};
+class list:public solution
+{
+
  node* head;
  node* tail;
  public:
@@ -49,30 +68,24 @@ else{
     //temp=temp->next;
     cout<<"NULL"<<endl;
  }
- int search(int key)
- { int idx=0;
-   node* temp=head;
-   while(temp!=NULL)
-   {
-   if(temp->data==key)
-   {
-    return idx;
-   }
-   else{
-    temp=temp->next;
-    idx++;
-   }
-   }
-   return -1;
+ void reverse()
+ {
+    head=reverselist(head);
  }
 };
+
 int main(){
 list ll;
+//solution r ;
 ll.push_front(2);
 ll.push_front(3);
 ll.push_front(4);
 ll.push_front(5);
+cout<<"before reverse:\n";
 ll.printll();
-cout<<ll.search(9)<<endl;
+cout<<"after  reverse:\n";
+ll.reverse();
+ll.printll();
+  
 return 0;
 }
