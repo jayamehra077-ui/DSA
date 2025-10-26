@@ -12,26 +12,22 @@ class node
     }
 };
 class solution
+{public:
+    node* midnode(node* head)
 {
- public:
-  node* reverselist(node* head)
-  {
-    node* prev=NULL;
-    node* curr=head;
-    node* next=NULL;
-    while(curr!=NULL)
+    //node*fast;
+    node* slow=head;
+    node* fast=head;
+    while(fast!=NULL && fast->next!=NULL)
     {
-        next=curr->next;
-        curr->next=prev;
-        prev=curr;
-        curr=next;
+        slow=slow->next;
+        fast=fast->next->next;
     }
-    return prev;
-  }
+    return slow;
+}
 };
 class list:public solution
 {
-
  node* head;
  node* tail;
  public:
@@ -68,24 +64,29 @@ else{
     //temp=temp->next;
     cout<<"NULL"<<endl;
  }
- void reverse()
- {
-    head=reverselist(head);
- }
+ void printMidNode() { // Renamed for clarity
+        node* middle = midnode(head); // Get the middle node
+        if (middle != NULL) {
+            cout << middle->data << endl; // Print its data
+        } else {
+            cout << "List is empty, no middle node." << endl;
+        }
+    } 
 };
-
 int main(){
 list ll;
-//solution r ;
 ll.push_front(2);
 ll.push_front(3);
 ll.push_front(4);
 ll.push_front(5);
-cout<<"before reverse:\n";
+cout<<"linklist:\n";
 ll.printll();
-cout<<"after  reverse:\n";
-ll.reverse();
-ll.printll();
-  
+cout << "midnode:\n"; 
+    ll.printMidNode(); // Call the new function to print the middle node's data
+
+    // To demonstrate the original list is unchanged, print it again
+    cout << "linklist after midnode check:\n";
+    ll.printll(); 
+
 return 0;
 }
