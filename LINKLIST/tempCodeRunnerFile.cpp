@@ -21,7 +21,7 @@ class list
     head=tail=NULL;
 
  }
- void push_back(int val)
+ void push_front(int val)
  {
 node* newnode=new node(val);//data stors permanently
 //node newnode(val); "data erase after func calling"
@@ -34,28 +34,9 @@ if(head==NULL)
     return;
 }
 else{
-    tail->next=newnode;
-    tail=newnode;
+    newnode->next=head;
+    head=newnode;
 }
-}
-void pop_back()
-{
-    if(head==NULL)
-    {
-        cout<<"link list is empty";
-        return;
-    }
-    else
-    {
-      node* temp=head;
-      while(temp->next!=tail)
-      {
-       temp=temp->next;
-      }
-      temp->next=NULL;
-      delete tail;
-      tail=temp;
-    }
 }
  void printll()
  {
@@ -68,14 +49,30 @@ void pop_back()
     //temp=temp->next;
     cout<<"NULL"<<endl;
  }
+ int search(int key)
+ { int idx=0;
+   node* temp=head;
+   while(temp!=NULL)
+   {
+   if(temp->data==key)
+   {
+    return idx;
+   }
+   else{
+    temp=temp->next;
+    idx++;
+   }
+   }
+   return -1;
+ }
 };
 int main(){
 list ll;
-ll.push_back(2);
-ll.push_back(3);
-ll.push_back(4);
-ll.pop_back();
+ll.push_front(2);
+ll.push_front(3);
+ll.push_front(4);
+ll.push_front(5);
 ll.printll();
-ll.pop_back();
+cout<<ll.search(9)<<endl;
 return 0;
 }
