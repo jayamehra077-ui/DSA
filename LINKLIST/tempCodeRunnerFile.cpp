@@ -13,18 +13,21 @@ class node
 };
 class solution
 {public:
-    node* midnode(node* head)
-{
-    //node*fast;
-    node* slow=head;
-    node* fast=head;
-    while(fast!=NULL && fast->next!=NULL)
+    bool hascycle(node* head)
     {
-        slow=slow->next;
-        fast=fast->next->next;
+        node* slow=head;
+        node* fast=head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast)
+            {
+                return true;
+            }
+        }
+        return false;
     }
-    return slow;
-}
 };
 class list:public solution
 {
@@ -64,14 +67,16 @@ else{
     //temp=temp->next;
     cout<<"NULL"<<endl;
  }
- void printMidNode() { // Renamed for clarity
-        node* middle = midnode(head); // Get the middle node
-        if (middle != NULL) {
-            cout << middle->data << endl; // Print its data
-        } else {
-            cout << "List is empty, no middle node." << endl;
-        }
-    } 
+ void checkcycle()
+ {
+    
+    if(hascycle( head)){
+    cout<<"cycle detect in link list";
+    }
+    else{
+        cout<<"No cycle detect in link list";
+    }
+ }
 };
 int main(){
 list ll;
@@ -79,14 +84,10 @@ ll.push_front(2);
 ll.push_front(3);
 ll.push_front(4);
 ll.push_front(5);
-cout<<"linklist:\n";
 ll.printll();
-cout << "midnode:\n"; 
-    ll.printMidNode(); // Call the new function to print the middle node's data
+//cout<<"Has cycle:\n";
+ll.checkcycle();
 
-    // To demonstrate the original list is unchanged, print it again
-    cout << "linklist after midnode check:\n";
-    ll.printll(); 
 
 return 0;
 }
