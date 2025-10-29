@@ -11,25 +11,7 @@ class node
      next=NULL;
     }
 };
-class solution
-{public:
-    bool hascycle(node* head)
-    {
-        node* slow=head;
-        node* fast=head;
-        while(fast!=NULL && fast->next!=NULL)
-        {
-            slow=slow->next;
-            fast=fast->next->next;
-            if(slow==fast)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-};
-class list:public solution
+class list
 {
  node* head;
  node* tail;
@@ -67,15 +49,30 @@ else{
     //temp=temp->next;
     cout<<"NULL"<<endl;
  }
- void checkcycle()
- {
+ void add_beforelast(int x)
+ {if (head == NULL) {
+            push_front(x);
+            return;
+        }
+        
+        if (head->next == NULL) {
+            node* newnode = new node(x);
+            newnode->next = head;
+            head = newnode;
+            return;
+        }
+
+        node* slow = head; 
+        node* fast = head->next; 
     
-    if(hascycle( head)){
-    cout<<"cycle detect in link list";
+    while( fast->next!=NULL)
+    {
+      slow=slow->next;
+      fast=fast->next;
     }
-    else{
-        cout<<"No cycle detect in link list";
-    }
+    node* newnode=new node(x);
+    newnode->next=fast;
+    slow->next =newnode;
  }
 };
 int main(){
@@ -85,9 +82,7 @@ ll.push_front(3);
 ll.push_front(4);
 ll.push_front(5);
 ll.printll();
-//cout<<"Has cycle:\n";
-ll.checkcycle();
-
-
+ll.add_beforelast(30);
+ll.printll();
 return 0;
 }
