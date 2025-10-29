@@ -1,46 +1,33 @@
 #include<iostream>
 using namespace std;
-class node
+struct node
 {
-    public:
-    int data;
-    node* next;
-    node(int val)
-    {
-     data=val;
-     next=NULL;
-    }
-};
-class list
-{
- node* head;
- node* tail;
- public:
- list()
- {
-    head=tail=NULL;
+ int data;
+ node* next,*prev;
 
- }
- void push_front(int val)
- {
-node* newnode=new node(val);//data stors permanently
-//node newnode(val); "data erase after func calling"
-//newnode->next=head;
-//head=newnode;
- 
-if(head==NULL)
+node *temp,*ttemp,*p,*first;
+void creat_first()
 {
-    head=tail=newnode;
-    return;
+    first=new node;
+    cin>>first->data;
+    first->next=first->prev=NULL;
 }
-else{
-    newnode->next=head;
-    head=newnode;
+void add_node()
+{
+temp=first;
+while(temp->next!=NULL)
+{
+    temp=temp->next;
+    ttemp=new node;
+    cin>>ttemp->data;
+    temp->next=ttemp;
+    ttemp->prev=temp;
+    ttemp->next=NULL;
 }
 }
- void printll()
+void printll()
  {
-    node* temp=head;
+    node* temp=first;
     while(temp!=NULL)
     {
         cout<<temp->data<<" ->";
@@ -48,41 +35,13 @@ else{
     }
     //temp=temp->next;
     cout<<"NULL"<<endl;
- }
- void add_beforelast(int x)
- {if (head == NULL) {
-            push_front(x);
-            return;
-        }
-        
-        if (head->next == NULL) {
-            node* newnode = new node(x);
-            newnode->next = head;
-            head = newnode;
-            return;
-        }
+ }};
+ int main()
+ {
+   struct node n1;
+   n1.add_node();
+   n1.add_node();
+   n1.add_node();
+   n1.printll();
 
-        node* slow = head; 
-        node* fast = head->next; 
-    
-    while( fast->next!=NULL)
-    {
-      slow=slow->next;
-      fast=fast->next;
-    }
-    node* newnode=new node(x);
-    newnode->next=fast;
-    slow->next =newnode;
  }
-};
-int main(){
-list ll;
-ll.push_front(2);
-ll.push_front(3);
-ll.push_front(4);
-ll.push_front(5);
-ll.printll();
-ll.add_beforelast(30);
-ll.printll();
-return 0;
-}
