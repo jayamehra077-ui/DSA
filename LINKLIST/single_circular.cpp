@@ -8,7 +8,7 @@ class circular
    circular(int val)
    {
     data=val;
-    next=NULL;
+    next;
    }
 };
 circular*first;
@@ -27,7 +27,7 @@ class list
         if(first==NULL)
         {
          first=newnode;
-         newnode->next=first;
+         first->next=newnode;
         }
         else
         {
@@ -37,9 +37,8 @@ class list
             temp=temp->next;
           }
           ttemp=newnode;
-          ttemp->next=temp;
+          ttemp->next=first;
           temp->next=ttemp;
-          ttemp=first;
         }
     }
         void display()
@@ -47,23 +46,11 @@ class list
             temp=first;
             do
             {
-             cout<<temp->data;  
+             cout<<temp->data<<"->";  
              temp=temp->next;
             } while (temp!=first);
             
-            
         }
     
-    
+    }
 };
-int main()
-{
-     list ll;
-     ll.add_node(10);
-     ll.add_node(20);
-     ll.add_node(30);
-     ll.add_node(40);
-     ll.add_node(50);
-     ll.display();
-     return 0;
-}
