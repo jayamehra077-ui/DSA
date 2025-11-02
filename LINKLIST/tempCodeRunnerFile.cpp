@@ -14,6 +14,7 @@ class circular
 circular*first;
 circular*temp;
 circular*ttemp;
+circular*p;
 class list
 {
     public:
@@ -57,12 +58,16 @@ class list
         }
     void swap()
     {
-        temp=first->next;
-        ttemp=temp->next;
-        temp->next=first;
-        first->next=ttemp;
-        first=temp;
-
+        temp=first;
+        while(temp->next->next!=first)
+        {
+            ttemp=temp;
+            temp=temp->next;
+            p=temp->next;
+        }
+       ttemp->next=p;
+       p->next=temp;
+       temp->next=first;
     }
     
 };
