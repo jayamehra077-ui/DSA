@@ -55,7 +55,15 @@ class list
             
             cout << "NULL" << endl;
         }
-    
+    void swap()
+    {
+        temp=first->next;
+        ttemp=temp->next;
+        temp->next=first;
+        first->next=ttemp;
+        first=temp;
+
+    }
     
 };
 int main()
@@ -66,6 +74,10 @@ int main()
      ll.add_node(30);
      ll.add_node(40);
      ll.add_node(50);
+     cout<<"before swapping"<<endl;
+     ll.display();
+     cout<<"after swapping"<<endl;
+     ll.swap();
      ll.display();
      return 0;
 }
