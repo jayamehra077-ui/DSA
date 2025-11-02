@@ -1,75 +1,70 @@
 #include<iostream>
 using namespace std;
-class circular
+class node
 {
     public:
-   int data;
-   circular* next;
-   circular(int val)
-   {
-    data=val;
-    next=NULL;
-   }
+ int data;
+ node* next;
+  node(int val)
+ {
+   data=val;
+   node*next=NULL;
+ }
 };
-circular*first;
-circular*temp;
-circular*ttemp;
-circular*p;
 class list
 {
     public:
-    list()
+node*first;
+node* temp;
+node* ttemp;
+list()
+{
+   first=temp=ttemp=NULL; 
+}
+
+void add_node(int x)
+{
+    node* newnode=new node(x);
+    temp=first;
+    if(first==NULL)
     {
+      first=newnode;
+    }
+    else{
+    temp=first;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
         
     }
-    void add_node(int x)
+    temp->next=newnode;
+}
+}
+void print()
+{
+    temp=first;
+    while(temp!=NULL)
     {
-        circular* newnode=new circular(x);
-        if(first==NULL)
-        {
-         first=newnode;
-         newnode->next=first;
-        }
-        else
-        {
-            temp=first;
-          while(temp->next!=first)
-          {
-            temp=temp->next;
-          }
-          temp->next=newnode;
-          newnode->next=first;
-        }
+        cout<<temp->data<<"->";
+        temp=temp->next;
     }
-        void display()
-        {
-            if (first == NULL) {
-            cout << "List is empty." << endl;
+    cout<<"NULL"<<endl;
+
+}
+void swap()
+{
+     if (first == NULL || first->next == NULL) {
+            // Cannot swap if list is empty or has only one node
             return;
         }
-            temp=first;
-            do
-            {
-             cout<<temp->data<<"->";  
-             temp=temp->next;
-            } while (temp!=first);
-            
-            cout << "NULL" << endl;
-        }
-    void swap()
-    {
-        temp=first;
-        while(temp->next->next!=first)
-        {
-            ttemp=temp;
-            temp=temp->next;
-            p=temp->next;
-        }
-       ttemp->next=p;
-       p->next=temp;
-       temp->next=first;
-    }
-    
+    temp=first->next;
+    ttemp=temp->next;
+
+    temp->next=first;
+    first->next=ttemp;
+    first=temp;
+
+}
 };
 int main()
 {
@@ -79,10 +74,8 @@ int main()
      ll.add_node(30);
      ll.add_node(40);
      ll.add_node(50);
-     cout<<"before swapping"<<endl;
-     ll.display();
-     cout<<"after swapping"<<endl;
+     ll.print();
      ll.swap();
-     ll.display();
+     ll.print();
      return 0;
 }
