@@ -19,11 +19,11 @@ class list
     public:
     list()
     {
-        first=temp=ttemp=NULL;
+        
     }
     void add_node(int x)
     {
-        circular* newnode;
+        circular* newnode=new circular(x);
         if(first==NULL)
         {
          first=newnode;
@@ -36,22 +36,24 @@ class list
           {
             temp=temp->next;
           }
-          ttemp=newnode;
-          ttemp->next=temp;
-          temp->next=ttemp;
-          ttemp=first;
+          temp->next=newnode;
+          newnode->next=first;
         }
     }
         void display()
         {
+            if (first == NULL) {
+            cout << "List is empty." << endl;
+            return;
+        }
             temp=first;
             do
             {
-             cout<<temp->data;  
+             cout<<temp->data<<"->";  
              temp=temp->next;
             } while (temp!=first);
             
-            
+            cout << "NULL" << endl;
         }
     
     
