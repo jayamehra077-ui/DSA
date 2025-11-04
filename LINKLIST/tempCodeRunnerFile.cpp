@@ -17,10 +17,9 @@ class list
 node*first;
 node* temp;
 node* ttemp;
-node*p;
 list()
 {
-   first=temp=ttemp=p=NULL; 
+   first=temp=ttemp=NULL; 
 }
 
 void add_node(int x)
@@ -54,19 +53,17 @@ void print()
 }
 void swap()
 {
-   p=first;
-   temp=p->next;
-   ttemp=temp->next;
-   
-    while(p->next->next->next!=NULL)
-    {
-       
-       p=p->next;
-    }
-   p->next=ttemp;
-   ttemp->next=temp;
-   temp->next=NULL;
-   
+     if (first == NULL || first->next == NULL) {
+            // Cannot swap if list is empty or has only one node
+            return;
+        }
+    temp=first->next;
+    ttemp=temp->next;
+
+    temp->next=first;
+    first->next=ttemp;
+    first=temp;
+
 }
 };
 int main()
@@ -79,5 +76,6 @@ int main()
      ll.add_node(50);
      ll.print();
      ll.swap();
+     ll.print();
      return 0;
 }
