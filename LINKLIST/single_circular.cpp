@@ -8,7 +8,7 @@ class circular
    circular(int val)
    {
     data=val;
-    next;
+    next=NULL;
    }
 };
 circular*first;
@@ -19,15 +19,15 @@ class list
     public:
     list()
     {
-        first=temp=ttemp=NULL;
+        
     }
     void add_node(int x)
     {
-        circular* newnode;
+        circular* newnode=new circular(x);
         if(first==NULL)
         {
          first=newnode;
-         first->next=newnode;
+         newnode->next=first;
         }
         else
         {
@@ -36,13 +36,16 @@ class list
           {
             temp=temp->next;
           }
-          ttemp=newnode;
-          ttemp->next=first;
-          temp->next=ttemp;
+          temp->next=newnode;
+          newnode->next=first;
         }
     }
         void display()
         {
+            if (first == NULL) {
+            cout << "List is empty." << endl;
+            return;
+        }
             temp=first;
             do
             {
@@ -50,7 +53,19 @@ class list
              temp=temp->next;
             } while (temp!=first);
             
+            
         }
     
-    }
+    
 };
+int main()
+{
+     list ll;
+     ll.add_node(10);
+     ll.add_node(20);
+     ll.add_node(30);
+     ll.add_node(40);
+     ll.add_node(50);
+     ll.display();
+     return 0;
+}
