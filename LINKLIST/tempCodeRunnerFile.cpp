@@ -1,81 +1,45 @@
 #include<iostream>
 using namespace std;
-class node
+struct node
 {
-    public:
  int data;
- node* next;
-  node(int val)
- {
-   data=val;
-   node*next=NULL;
- }
-};
-class list
-{
-    public:
-node*first;
-node* temp;
-node* ttemp;
-list()
-{
-   first=temp=ttemp=NULL; 
-}
+ node* next,*prev;
 
-void add_node(int x)
+node *temp,*ttemp,*p,*first;
+void creat_first()
 {
-    node* newnode=new node(x);
-    temp=first;
-    if(first==NULL)
-    {
-      first=newnode;
-    }
-    else{
-    temp=first;
-    while(temp->next!=NULL)
-    {
-        temp=temp->next;
-        
-    }
-    temp->next=newnode;
+    first=new node;
+    cin>>first->data;
+    first->next=first->prev=NULL;
+}
+void add_node()
+{
+temp=first;
+while(temp->next!=NULL)
+{
+    temp=temp->next;
+    ttemp=new node;
+    cin>>ttemp->data;
+    temp->next=ttemp;
+    ttemp->prev=temp;
+    ttemp->next=NULL;
 }
 }
-void print()
-{
-    temp=first;
+void printll()
+ {
+    node* temp=first;
     while(temp!=NULL)
     {
-        cout<<temp->data<<"->";
+        cout<<temp->data<<" ->";
         temp=temp->next;
     }
+    //temp=temp->next;
     cout<<"NULL"<<endl;
+ }};
+ int main()
+ {
+   struct node n1;
+   n1.add_node();
+   n1.printll();
 
-}
-void swap()
-{
-     if (first == NULL || first->next == NULL) {
-            // Cannot swap if list is empty or has only one node
-            return;
-        }
-    temp=first->next;
-    ttemp=temp->next;
-
-    temp->next=first;
-    first->next=ttemp;
-    first=temp;
-
-}
-};
-int main()
-{
-     list ll;
-     ll.add_node(10);
-     ll.add_node(20);
-     ll.add_node(30);
-     ll.add_node(40);
-     ll.add_node(50);
-     ll.print();
-     ll.swap();
-     ll.print();
-     return 0;
-}
+ }
