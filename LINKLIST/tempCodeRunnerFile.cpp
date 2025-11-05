@@ -17,7 +17,7 @@ class list
 node*first;
 node* temp;
 node* ttemp;
-node*p;
+node*p,*q,*a,*b;
 list()
 {
    first=NULL; 
@@ -52,20 +52,30 @@ void print()
     cout<<"NULL"<<endl;
 
 }
-void swap()
+void swap(int x,int y)
 {
-    temp=first;
-    ttemp=temp->next;
-    p=first->next;
-    while(ttemp->next!=NULL)
-    {
-        temp=temp->next;
-        ttemp=ttemp->next;
-    }
-    temp->next=first;
-    first->next=NULL;
-    ttemp->next=p;
-    first=ttemp;
+  p=first;
+  temp=p->next;
+  q=temp->next;
+  while(temp->data!=x)  
+  {
+    p=p->next;
+    temp=temp->next;
+    q=q->next;
+  }
+  a=first;
+  ttemp=a->next;
+  b=ttemp->next;
+   while(ttemp->data!=y)
+   {
+    a=a->next;
+    ttemp=ttemp->next;
+    b=b->next;
+   }  
+   p->next=ttemp;
+   ttemp->next=q;
+   a->next=temp;
+   temp->next=b;
 }
 };
 int main()
@@ -77,7 +87,7 @@ int main()
      ll.add_node(40);
      ll.add_node(50);
      ll.print();
-     ll.swap();
+     ll.swap(20,40);
      ll.print();
      return 0;
 }
