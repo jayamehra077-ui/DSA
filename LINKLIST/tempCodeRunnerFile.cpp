@@ -4,75 +4,80 @@ class node
 {
     public:
  int data;
- node* next,*prev;
- node(int x)
+ node* next;
+  node(int val)
  {
-   data=x;
-   prev=next=NULL;
+   data=val;
+   node*next=NULL;
  }
 };
 class list
 {
     public:
-node *temp,*ttemp,*p,*first;
+node*first;
+node* temp;
+node* ttemp;
+node*p;
 list()
 {
-    temp=ttemp=first=p=NULL;
+   first=NULL; 
 }
-void creat_first(int val)
+
+void add_node(int x)
 {
-    node*newnode=new node(val);
+    node* newnode=new node(x);
+    temp=first;
     if(first==NULL)
     {
-        first=newnode;
+      first=newnode;
     }
     else{
-        temp=first;
-        first->next=temp;
-        while(temp->next!=first)
-        {
-            temp=temp->next;
-        }
-        //newnode->prev=NULL;
-        temp->next=newnode;
-        newnode->prev=temp;
-        newnode->next=first;
-
-    
-}
-/*void add_node()
-{
-temp=first;
-while(temp->next!=NULL)
-{
-    temp=temp->next;
-    ttemp=new node;
-    cin>>ttemp->data;
-    temp->next=ttemp;
-    ttemp->prev=temp;
-    ttemp->next=NULL;
-}
-}*/}
-void printll()
- {
-    node* temp=first;
-    //cout<<"NULL->";
-   do
+    temp=first;
+    while(temp->next!=NULL)
     {
-        cout<<temp->data<<" ->";
         temp=temp->next;
-    } while(temp->next!=first);
-    //temp=temp->next;
-    //cout<<"NULL"<<endl;
- }
+        
+    }
+    temp->next=newnode;
+}
+}
+void print()
+{
+    temp=first;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+    cout<<"NULL"<<endl;
+
+}
+void swap()
+{
+    temp=first;
+    ttemp=temp->next;
+    p=first->next;
+    while(ttemp->next!=NULL)
+    {
+        temp=temp->next;
+        ttemp=ttemp->next;
+    }
+    temp->next=first;
+    first->next=NULL;
+    ttemp->next=p;
+    first=ttemp;
+}
 };
 int main()
 {
-    list ll;
-    ll.creat_first(100);
-    ll.creat_first(200);
-    ll.creat_first(300);
-    ll.creat_first(400);
-    ll.creat_first(500);
-    ll.printll();
+     list ll;
+     ll.add_node(10);
+     ll.add_node(20);
+     ll.add_node(30);
+     ll.add_node(40);
+     ll.add_node(50);
+     ll.print();
+     ll.swap();
+     ll.print();
+     return 0;
 }
