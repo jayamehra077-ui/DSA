@@ -1,82 +1,62 @@
 #include<iostream>
 using namespace std;
-class node
+class circular
 {
     public:
- int data;
- node* next;
-  node(int val)
- {
-   data=val;
-   node*next=NULL;
- }
+   int data;
+   circular* next;
+   circular(int val)
+   {
+    data=val;
+    next=NULL;
+   }
 };
+circular*first;
+circular*temp;
+circular*ttemp;
 class list
 {
     public:
-node*first;
-node* temp;
-node* ttemp;
-node*p,*q,*a,*b;
-list()
-{
-   first=NULL; 
-}
-
-void add_node(int x)
-{
-    node* newnode=new node(x);
-    temp=first;
-    if(first==NULL)
+    list()
     {
-      first=newnode;
-    }
-    else{
-    temp=first;
-    while(temp->next!=NULL)
-    {
-        temp=temp->next;
         
     }
-    temp->next=newnode;
-}
-}
-void print()
-{
-    temp=first;
-    while(temp!=NULL)
+    void add_node(int x)
     {
-        cout<<temp->data<<"->";
-        temp=temp->next;
+        circular* newnode=new circular(x);
+        if(first==NULL)
+        {
+         first=newnode;
+         newnode->next=first;
+        }
+        else
+        {
+            temp=first;
+          while(temp->next!=first)
+          {
+            temp=temp->next;
+          }
+          temp->next=newnode;
+          newnode->next=first;
+        }
     }
-    cout<<"NULL"<<endl;
-
-}
-void swap(int x,int y)
-{
-  p=first;
-  temp=p->next;
-  q=temp->next;
-  while(temp->data!=x)  
-  {
-    p=p->next;
-    temp=temp->next;
-    q=q->next;
-  }
-  a=first;
-  ttemp=a->next;
-  b=ttemp->next;
-   while(ttemp->data!=y)
-   {
-    a=a->next;
-    ttemp=ttemp->next;
-    b=b->next;
-   }  
-   p->next=ttemp;
-   ttemp->next=q;
-   a->next=temp;
-   temp->next=b;
-}
+        void display()
+        {
+            if (first == NULL) {
+            cout << "List is empty." << endl;
+            return;
+        }
+            temp=first;
+            do
+            {
+             cout<<temp->data<<"->";  
+             temp=temp->next;
+            } while (temp!=first);
+            
+            
+        }
+    
+    
 };
 int main()
 {
@@ -86,8 +66,6 @@ int main()
      ll.add_node(30);
      ll.add_node(40);
      ll.add_node(50);
-     ll.print();
-     ll.swap(20,40);
-     ll.print();
+     ll.display();
      return 0;
 }
