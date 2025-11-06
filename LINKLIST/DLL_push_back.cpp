@@ -1,10 +1,90 @@
 #include<iostream>
 using namespace std;
-struct node
+class node
 {
-    int data;
-    node* next;
-    node* prev;
+    public:
+ int data;
+ node* next,*prev;
+ node(int x)
+ {
+   data=x;
+   prev=next=NULL;
+ }
 };
-node* temp;
-node* ttemp;
+class list
+{
+    public:
+node *temp,*ttemp,*p,*first;
+list()
+{
+    temp=ttemp=first=p=NULL;
+}
+void creat_first(int val)
+{
+    node*newnode=new node(val);
+    if(first==NULL)
+    {
+        first=newnode;
+    }
+    else{
+        temp=first;
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        //newnode->prev=NULL;
+        temp->next=newnode;
+        newnode->prev=temp;
+        //first=newnode;
+
+    
+}
+/*void add_node()
+{
+temp=first;
+while(temp->next!=NULL)
+{
+    temp=temp->next;
+    ttemp=new node;
+    cin>>ttemp->data;
+    temp->next=ttemp;
+    ttemp->prev=temp;
+    ttemp->next=NULL;
+}
+}*/}
+void printll()
+ {
+    node* temp=first;
+    cout<<"NULL->";
+   do
+    {
+        cout<<temp->data<<" ->";
+        temp=temp->next;
+    } while(temp!=NULL);
+    //temp=temp->next;
+    cout<<"NULL"<<endl;
+ }
+ void push_back(int x)
+ {
+    temp=first;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    node*newnode=new node(x);
+    temp->next=newnode;
+    newnode->prev=temp;
+ }
+};
+int main()
+{
+    list ll;
+    ll.creat_first(100);
+    ll.creat_first(200);
+    ll.creat_first(300);
+    ll.creat_first(400);
+    ll.creat_first(500);
+    ll.printll();
+    ll.push_back(600);
+    ll.printll();
+}

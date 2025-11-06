@@ -1,71 +1,96 @@
 #include<iostream>
 using namespace std;
-class circular
+class node
 {
     public:
-   int data;
-   circular* next;
-   circular(int val)
-   {
-    data=val;
-    next=NULL;
-   }
+ int data;
+ node* next,*prev;
+ node(int x)
+ {
+   data=x;
+   prev=next=NULL;
+ }
 };
-circular*first;
-circular*temp;
-circular*ttemp;
 class list
 {
     public:
-    list()
+node *temp,*ttemp,*p,*first;
+list()
+{
+    temp=ttemp=first=p=NULL;
+}
+void creat_first(int val)
+{
+    node*newnode=new node(val);
+    if(first==NULL)
     {
-        
+        first=newnode;
     }
-    void add_node(int x)
-    {
-        circular* newnode=new circular(x);
-        if(first==NULL)
+    else{
+        temp=first;
+        while(temp->next!=NULL)
         {
-         first=newnode;
-         newnode->next=first;
-        }
-        else
-        {
-            temp=first;
-          while(temp->next!=first)
-          {
             temp=temp->next;
-          }
-          temp->next=newnode;
-          newnode->next=first;
         }
+        //newnode->prev=NULL;
+        temp->next=newnode;
+        newnode->prev=temp;
+        //first=newnode;
+
+    
+}
+/*void add_node()
+{
+temp=first;
+while(temp->next!=NULL)
+{
+    temp=temp->next;
+    ttemp=new node;
+    cin>>ttemp->data;
+    temp->next=ttemp;
+    ttemp->prev=temp;
+    ttemp->next=NULL;
+}
+}*/}
+void printll()
+ {
+    node* temp=first;
+    cout<<"NULL->";
+   do
+    {
+        cout<<temp->data<<" ->";
+        temp=temp->next;
+    } while(temp!=NULL);
+    //temp=temp->next;
+    cout<<"NULL"<<endl;
+ }
+ void add_before(int x,int y)
+ {
+    temp=first;
+    ttemp=first->next;
+    while(ttemp->data!=x)
+    {
+        temp=temp->next;
+        ttemp=ttemp->next;
     }
-        void display()
-        {
-            if (first == NULL) {
-            cout << "List is empty." << endl;
-            return;
-        }
-            temp=first;
-            do
-            {
-             cout<<temp->data<<"->";  
-             temp=temp->next;
-            } while (temp!=first);
-            
-            
-        }
-    
-    
+    node*newnode=new node(x);
+    newnode->data=y;
+    temp->next=newnode;
+    newnode->prev=temp;
+    newnode->next=ttemp;
+    ttemp->prev=newnode;
+ }
 };
 int main()
 {
-     list ll;
-     ll.add_node(10);
-     ll.add_node(20);
-     ll.add_node(30);
-     ll.add_node(40);
-     ll.add_node(50);
-     ll.display();
-     return 0;
+    list ll;
+    ll.creat_first(100);
+    ll.creat_first(200);
+    ll.creat_first(300);
+    ll.creat_first(400);
+    ll.creat_first(500);
+    ll.printll();
+    ll.add_before(300,1000);
+    ll.printll();
+    return 0;
 }

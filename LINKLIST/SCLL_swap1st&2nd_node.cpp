@@ -60,15 +60,15 @@ class list
     {
         temp=first;
         p=first->next;
-        ttemp=first->next->next;
-        while(temp!=first)
+        ttemp=p->next;
+        while(temp->next!=first)
         {
             temp=temp->next;
         }
         p->next=first;
         first->next=ttemp;
         temp->next=p;
-        p=first;
+        first=p;
         
     }
     

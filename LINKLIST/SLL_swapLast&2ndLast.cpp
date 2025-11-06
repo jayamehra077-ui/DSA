@@ -58,10 +58,12 @@ void swap()
    temp=p->next;
    ttemp=temp->next;
    
-    while(p->next->next->next!=NULL)
+    while(ttemp->next!=NULL)
     {
        
        p=p->next;
+       temp=temp->next;
+       ttemp=ttemp->next;
     }
    p->next=ttemp;
    ttemp->next=temp;
