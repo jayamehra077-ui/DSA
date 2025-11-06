@@ -64,17 +64,16 @@ void printll()
     //temp=temp->next;
     cout<<"NULL"<<endl;
  }
- void add_before(int x,int y)
+ void add_after(int x,int y)
  {
     temp=first;
-    ttemp=first->next;
-    while(ttemp->data!=x)
+    ttemp=temp->next;
+    while(temp->data!=x)
     {
         temp=temp->next;
         ttemp=ttemp->next;
     }
-    node*newnode=new node(x);
-    newnode->data=y;
+    node*newnode=new node(y);
     temp->next=newnode;
     newnode->prev=temp;
     newnode->next=ttemp;
@@ -90,7 +89,7 @@ int main()
     ll.creat_first(400);
     ll.creat_first(500);
     ll.printll();
-    ll.add_before(300,1000);
+    ll.add_after(300,1000);
     ll.printll();
     return 0;
 }
