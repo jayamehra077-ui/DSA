@@ -28,14 +28,15 @@ void creat_first(int val)
     }
     else{
         temp=first;
-        while(temp->next!=NULL)
+        first->next=temp;
+        while(temp->next!=first)
         {
             temp=temp->next;
         }
         //newnode->prev=NULL;
         temp->next=newnode;
         newnode->prev=temp;
-        //first=newnode;
+        newnode->next=first;
 
     
 }
@@ -55,31 +56,14 @@ while(temp->next!=NULL)
 void printll()
  {
     node* temp=first;
-    cout<<"NULL->";
+    //cout<<"NULL->";
    do
     {
         cout<<temp->data<<" ->";
         temp=temp->next;
-    } while(temp!=NULL);
+    } while(temp->next!=first);
     //temp=temp->next;
-    cout<<"NULL"<<endl;
- }
- void swap()
- {
-    temp=first;
-    ttemp=temp->next;
-    p=ttemp->next;
-    while(p->next!=NULL)
-    {
-        temp=temp->next;
-        ttemp=ttemp->next;
-        p=p->next;
-    }
-    temp->next=p;
-    p->prev=temp;
-    p->next=ttemp;
-    ttemp->prev=p;
-    ttemp->next=NULL;
+    //cout<<"NULL"<<endl;
  }
 };
 int main()
@@ -90,7 +74,5 @@ int main()
     ll.creat_first(300);
     ll.creat_first(400);
     ll.creat_first(500);
-    ll.printll();
-    ll.swap();
     ll.printll();
 }
