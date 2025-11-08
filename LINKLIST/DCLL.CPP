@@ -25,10 +25,13 @@ void creat_first(int val)
     if(first==NULL)
     {
         first=newnode;
+        newnode->next=newnode;
+        newnode->prev=newnode;
+        
     }
     else{
         temp=first;
-        first->next=temp;
+        //first->next=temp;
         while(temp->next!=first)
         {
             temp=temp->next;
@@ -37,6 +40,8 @@ void creat_first(int val)
         temp->next=newnode;
         newnode->prev=temp;
         newnode->next=first;
+        first->prev=newnode;
+        
 
     
 }
@@ -61,7 +66,7 @@ void printll()
     {
         cout<<temp->data<<" ->";
         temp=temp->next;
-    } while(temp->next!=first);
+    } while(temp!=first);
     //temp=temp->next;
     //cout<<"NULL"<<endl;
  }

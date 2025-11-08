@@ -67,8 +67,24 @@ void printll()
         cout<<temp->data<<" ->";
         temp=temp->next;
     } while(temp!=first);
+    cout<<endl;
     //temp=temp->next;
     //cout<<"NULL"<<endl;
+ }
+ void add_before_first(int x)
+ {
+    temp=first;
+    ttemp=first->next;
+    while(temp->next!=first)
+    {
+        temp=temp->next;
+    }
+    node*newnode=new node(x);
+    temp->next=newnode;
+    newnode->prev=temp;
+    newnode->next=first;
+    first->prev=newnode;
+    first=newnode;
  }
 };
 int main()
@@ -79,5 +95,7 @@ int main()
     ll.creat_first(300);
     ll.creat_first(400);
     ll.creat_first(500);
+    ll.printll();
+    ll.add_before_first(222);
     ll.printll();
 }
