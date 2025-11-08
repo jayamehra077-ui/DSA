@@ -71,10 +71,9 @@ void printll()
     //temp=temp->next;
     //cout<<"NULL"<<endl;
  }
- void add_before_first(int x)
+ void add_after_last(int x)
  {
     temp=first;
-    ttemp=first->next;
     while(temp->next!=first)
     {
         temp=temp->next;
@@ -83,8 +82,6 @@ void printll()
     temp->next=newnode;
     newnode->prev=temp;
     newnode->next=first;
-    first->prev=newnode;
-    first=newnode;
  }
 };
 int main()
@@ -96,6 +93,6 @@ int main()
     ll.creat_first(400);
     ll.creat_first(500);
     ll.printll();
-    ll.add_before_first(222);
+    ll.add_after_last(2222);
     ll.printll();
 }
