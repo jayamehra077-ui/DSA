@@ -1,85 +1,114 @@
 #include<iostream>
 using namespace std;
-class circular
+class node
 {
     public:
-   int data;
-   circular* next;
-   circular(int val)
-   {
-    data=val;
-    next=NULL;
-   }
+ int data;
+ node* next,*prev;
+ node(int x)
+ {
+   data=x;
+   prev=next=NULL;
+ }
 };
-circular*first;
-circular*temp;
-circular*ttemp,*p;
 class list
 {
     public:
-    list()
+node *temp,*ttemp,*p,*first,*a,*b,*q;
+list()
+{
+    temp=ttemp=first=p=NULL;
+}
+void creat_first(int val)
+{
+    node*newnode=new node(val);
+    if(first==NULL)
     {
+        first=newnode;
+        newnode->next=newnode;
+        newnode->prev=newnode;
         
     }
-    void add_node(int x)
-    {
-        circular* newnode=new circular(x);
-        if(first==NULL)
+    else{
+        temp=first;
+        //first->next=temp;
+        while(temp->next!=first)
         {
-         first=newnode;
-         newnode->next=first;
-        }
-        else
-        {
-            temp=first;
-          while(temp->next!=first)
-          {
             temp=temp->next;
-          }
-          temp->next=newnode;
-          newnode->next=first;
         }
-    }
-        void display()
-        {
-            if (first == NULL) {
-            cout << "List is empty." << endl;
-            return;
-        }
-            temp=first;
-            do
-            {
-             cout<<temp->data<<"->";  
-             temp=temp->next;
-            } while (temp!=first);
-            
-            
-        }
-    void del_after(int x)
+        //newnode->prev=NULL;
+        temp->next=newnode;
+        newnode->prev=temp;
+        newnode->next=first;
+        first->prev=newnode;
+        
+
+    
+}
+/*void add_node()
 {
-    temp=first;
+temp=first;
+while(temp->next!=NULL)
+{
+    temp=temp->next;
+    ttemp=new node;
+    cin>>ttemp->data;
+    temp->next=ttemp;
+    ttemp->prev=temp;
+    ttemp->next=NULL;
+}
+}*/}
+void printll()
+ {
+    node* temp=first;
+    //cout<<"NULL->";
+   do
+    {
+        cout<<temp->data<<" ->";
+        temp=temp->next;
+    } while(temp!=first);
+    //temp=temp->next;
+    //cout<<"NULL"<<endl;
+ }
+ void swap(int x,int y)
+ {
+    p=first;
+    temp=p->next;
+    q=temp->next;
     while(temp->data!=x)
     {
+        p=p->next;
         temp=temp->next;
+        q=q->next;
     }
-        ttemp=temp->next;
-        p=ttemp->next;
-        temp->next=p;
-        ttemp->next=NULL;
-        delete ttemp;
-}
-    
+     a=first;
+    ttemp=p->next;
+    b=temp->next;
+    while(ttemp->data!=y)
+    {
+        a=a->next;
+        ttemp=ttemp->next;
+        b=b->next;
+    }
+    p->next=ttemp;
+    ttemp->prev=p;
+    ttemp->next=q;
+    q->prev=ttemp;
+    a->next=temp;
+    temp->prev=a;
+    temp->next=b;
+    b->prev=temp;
+ }
 };
 int main()
 {
-     list ll;
-     ll.add_node(10);
-     ll.add_node(20);
-     ll.add_node(30);
-     ll.add_node(40);
-     ll.add_node(50);
-     ll.display();
-     ll.del_after(30);
-     ll.display();
-     return 0;
+    list ll;
+    ll.creat_first(100);
+    ll.creat_first(200);
+    ll.creat_first(300);
+    ll.creat_first(400);
+    ll.creat_first(500);
+    ll.printll();
+    ll.swap(200,400);
+    ll.printll();
 }
