@@ -55,21 +55,19 @@ class list
             
             
         }
-    void del_before(int x)
+    void del_after(int x)
+{
+    temp=first;
+    while(temp->data!=x)
     {
-        temp=first;
-        while(temp->next->data!=x)
-        {
-ttemp=temp;
-temp=temp->next;
-
-        }
-        p=temp->next;
-        ttemp->next=p;
-        temp->next=NULL;
-        delete temp;
-        
+        temp=temp->next;
     }
+        ttemp=temp->next;
+        p=ttemp->next;
+        temp->next=p;
+        ttemp->next=NULL;
+        delete ttemp;
+}
     
 };
 int main()
@@ -81,7 +79,7 @@ int main()
      ll.add_node(40);
      ll.add_node(50);
      ll.display();
-     ll.del_before(40);
-      ll.display();
+     ll.del_after(30);
+     ll.display();
      return 0;
 }
