@@ -14,7 +14,7 @@ class node
 class list
 {
     public:
-node *temp,*ttemp,*p,*first,*a,*b,*q;
+node *temp,*ttemp,*p,*first;
 list()
 {
     temp=ttemp=first=p=NULL;
@@ -69,35 +69,23 @@ void printll()
     } while(temp!=first);
     //temp=temp->next;
     //cout<<"NULL"<<endl;
+    cout<<endl;
  }
- void swap(int x,int y)
+ void del_first_node()
  {
-    p=first;
-    temp=p->next;
-    q=temp->next;
-    while(temp->data!=x)
+    temp=first;
+    ttemp=first->next;
+    while(temp->next!=first)
     {
-        p=p->next;
         temp=temp->next;
-        q=q->next;
     }
-     a=first;
-    ttemp=p->next;
-    b=temp->next;
-    while(ttemp->data!=y)
-    {
-        a=a->next;
-        ttemp=ttemp->next;
-        b=b->next;
-    }
-    p->next=ttemp;
-    ttemp->prev=p;
-    ttemp->next=q;
-    q->prev=ttemp;
-    a->next=temp;
-    temp->prev=a;
-    temp->next=b;
-    b->prev=temp;
+    //first->next=first->prev=NULL;
+    temp->next=ttemp;
+    ttemp->prev=temp;
+    first=ttemp;
+    first->next=first->prev=NULL;
+    delete first;
+
  }
 };
 int main()
@@ -109,6 +97,6 @@ int main()
     ll.creat_first(400);
     ll.creat_first(500);
     ll.printll();
-    ll.swap(200,400);
+    ll. del_first_node();
     ll.printll();
 }

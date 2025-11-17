@@ -69,22 +69,21 @@ void printll()
     } while(temp!=first);
     //temp=temp->next;
     //cout<<"NULL"<<endl;
+    cout<<endl;
  }
- void del_before(int x)
+ void del_first_node()
  {
     temp=first;
     ttemp=temp->next;
-    p=ttemp->next;
-    while(p->data!=x)
-    {
-        temp=temp->next;
-        ttemp=ttemp->next;
-        p=p->next;
-    }
-   temp->next=p;
-   p->prev=temp;
-   ttemp->next=ttemp->prev=NULL;
-    delete ttemp;
+    p=first->prev;
+   // p->next=ttemp;
+    ttemp->prev=p;
+    p->next=ttemp;
+    first=ttemp;
+    temp->next=temp->prev=NULL;
+    delete temp;
+
+
  }
 };
 int main()
@@ -96,6 +95,6 @@ int main()
     ll.creat_first(400);
     ll.creat_first(500);
     ll.printll();
-    ll.del_before(300);
+    ll. del_first_node();
     ll.printll();
 }
