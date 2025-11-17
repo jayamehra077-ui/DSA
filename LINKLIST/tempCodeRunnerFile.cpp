@@ -71,19 +71,15 @@ void printll()
     //cout<<"NULL"<<endl;
     cout<<endl;
  }
- void del_first_node()
+ void del_last_node()
  {
-    temp=first;
-    ttemp=temp->next;
-    p=first->prev;
-   // p->next=ttemp;
-    ttemp->prev=p;
-    p->next=ttemp;
-    first=ttemp;
+    temp=first->prev;
+    ttemp=temp->prev;
+    first->prev=ttemp;
+    ttemp->next=first;
+    //first->prev=temp;
     temp->next=temp->prev=NULL;
     delete temp;
-
-
  }
 };
 int main()
@@ -95,6 +91,6 @@ int main()
     ll.creat_first(400);
     ll.creat_first(500);
     ll.printll();
-    ll. del_first_node();
+    ll.del_last_node();
     ll.printll();
 }
