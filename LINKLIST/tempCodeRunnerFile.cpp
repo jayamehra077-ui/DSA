@@ -70,12 +70,12 @@ void printll()
     //temp=temp->next;
     //cout<<"NULL"<<endl;
  }
- void del_after(int x)
+ void del_before(int x)
  {
     temp=first;
     ttemp=temp->next;
     p=ttemp->next;
-    while(temp->data!=x)
+    while(p->data!=x)
     {
         temp=temp->next;
         ttemp=ttemp->next;
@@ -96,7 +96,6 @@ int main()
     ll.creat_first(400);
     ll.creat_first(500);
     ll.printll();
-    ll. del_after(300);
+    ll.del_before(300);
     ll.printll();
-    return 0;
 }
