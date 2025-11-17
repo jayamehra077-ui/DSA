@@ -1,17 +1,17 @@
 #include<iostream>
 using namespace std;
-int sum(int n)
+int power(int x,int y)
 {
-    if(n==0)
+    if(y==0)
     {
-        return 0;
+        return 1;
     }
     else{
-        return n+sum(n-1);
+        return x*power(x,y-1);
     }
 }
 int main()
 {
-    int data=sum(10);
-    cout<<"sum="<<data<<endl;
+    int data=power(4,3);
+    cout<<"power="<<data<<endl;
 }
