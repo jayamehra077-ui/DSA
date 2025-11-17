@@ -1,17 +1,17 @@
 #include<iostream>
 using namespace std;
-int fact(int x)
+int sum(int n)
 {
-    if(x==0)
+    if(n==0)
     {
-        return 1;
+        return 0;
     }
     else{
-        return x*fact(x-1);
+        return n+sum(n-1);
     }
 }
 int main()
 {
-    int data=fact(5);
-    cout<<"factorial="<<data<<endl;
+    int data=sum(10);
+    cout<<"sum="<<data<<endl;
 }
