@@ -103,11 +103,58 @@ void print()
     cout<<"NULL"<<endl;
 
 }
+
+};
+class merge:public list1,public list2
+{
+
+    public:
+    int data;
+    merge*next,*temp;
+    merge(int val)
+    {
+      data=val;
+      next=NULL;  
+    }
+    void add_ll(merge* first1,merge* first2)
+    {
+      merge* dummy = new merge(0);
+    merge* current = dummy;
+
+    while (first1 != nullptr && first2 != nullptr) {
+        if (first1->data <= first2->data) {
+            current->next = first1;
+            first1 = first1->next;
+        } else {
+            current->next = first2;
+            first2 = first2->next;
+        }
+        current = current->next;
+    }
+    if (first1 != nullptr) {
+        current->next = first1;
+    } else {
+        current->next = first2;
+    }
+
+    }
+    void printlist()
+    {
+        while (temp != nullptr) {
+        cout << temp->data << "->";
+        temp = temp->next;
+    }
+    cout << "NULL" << endl;
+
+    }
 };
 int main()
 {
      list1 ll1;
       list2 ll2;
+      
+      
+      cout<<"list 1:"<<endl;
      ll1.add_node(1);
      ll1.add_node(3);
      ll1.add_node(5);
@@ -115,11 +162,15 @@ int main()
      ll1.add_node(9);
      ll1.print();
      //list2 ll2;
+       cout<<"list 2:"<<endl;
      ll2.add_node(2);
      ll2.add_node(4);
      ll2.add_node(6);
      ll2.add_node(8);
      ll2.add_node(10);
      ll2.print();
+       cout<<"merge list:"<<endl;
+
      return 0;
+
 }

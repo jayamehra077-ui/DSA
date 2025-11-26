@@ -74,17 +74,15 @@ void printll()
  void del_first_node()
  {
     temp=first;
-    ttemp=first->next;
-    while(temp->next!=first)
-    {
-        temp=temp->next;
-    }
-    //first->next=first->prev=NULL;
-    temp->next=ttemp;
-    ttemp->prev=temp;
+    ttemp=temp->next;
+    p=first->prev;
+   // p->next=ttemp;
+    ttemp->prev=p;
+    p->next=ttemp;
     first=ttemp;
-    first->next=first->prev=NULL;
-    delete first;
+    temp->next=temp->prev=NULL;
+    delete temp;
+
 
  }
 };
