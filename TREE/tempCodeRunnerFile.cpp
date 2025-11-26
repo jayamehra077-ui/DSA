@@ -51,6 +51,27 @@ void in_order(BST*p)
     in_order(p->right);
   }
 }
+void pre_order(BST*p)
+{
+  if(p!=NULL)
+  {
+    //in_order(p->left);
+    cout<<p->data;
+    in_order(p->left);
+    in_order(p->right);
+  }
+}
+void post_order(BST*p)
+{
+  if(p!=NULL)
+  {
+    //in_order(p->left);
+   // cout<<p->data;
+    in_order(p->left);
+    in_order(p->right);
+    cout<<p->data;
+  }
+}
 int main()
 {
   init();
@@ -61,5 +82,12 @@ add_node(150);
 add_node(170);
 add_node(300);
 add_node(20);
+cout<<"----IN_ORDERED SEQUENCE-----"<<endl;
 in_order(root);
+cout<<"\n";
+cout<<"----PRE_ORDERED SEQUENCE-----"<<endl;
+pre_order(root);
+cout<<"\n";
+cout<<"----POST_ORDERED SEQUENCE-----"<<endl;
+post_order(root);
 }
