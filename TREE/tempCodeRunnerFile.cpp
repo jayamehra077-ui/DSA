@@ -72,6 +72,16 @@ void post_order(BST*p)
     cout<<p->data;
   }
 }
+int count=0;
+void count_node(BST*P)
+{
+    if(P!=NULL)
+    {
+        count++;
+        count_node(P->left);
+        count_node(P->right);
+    }
+}
 int main()
 {
   init();
@@ -88,6 +98,11 @@ cout<<"\n";
 cout<<"----PRE_ORDERED SEQUENCE-----"<<endl;
 pre_order(root);
 cout<<"\n";
-cout<<"----POST_ORDERED SEQUENCE-----"<<endl;
 post_order(root);
+cout<<"----POST_ORDERED SEQUENCE-----"<<endl;
+cout<<"\n";
+//cout<<"total number of nodes in tree="<<count;
+//post_order(root);
+count_node(root);
+
 }
